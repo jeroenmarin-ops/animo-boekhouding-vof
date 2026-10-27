@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#12372a">
+  <title>ANIMO Boekhouding VOF</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="toast" class="toast" role="status"></div>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><span class="brandmark">A</span><div><strong>ANIMO</strong><small>Boekhouding VOF</small></div></div>
+    <nav id="nav"></nav>
+    <div class="side-bottom"><span class="status-dot"></span><span>Demomodus</span><button id="resetBtn" class="link-btn">Reset demo</button></div>
+  </aside>
+  <main>
+    <header class="topbar">
+      <button id="menuBtn" class="icon-btn menu-btn" aria-label="Menu">☰</button>
+      <div><h1 id="pageTitle">Dashboard</h1><p id="pageSub">Overzicht van je onderneming</p></div>
+      <div class="top-actions"><button class="btn secondary" data-action="export">Export</button><button class="btn" data-action="quick">+ Nieuwe boeking</button><div class="avatar">AV</div></div>
+    </header>
+    <section id="content" class="content"></section>
+  </main>
+</div>
+<div id="modal" class="modal-wrap hidden" aria-hidden="true"><div class="modal"><button class="modal-close" data-action="close">×</button><div id="modalBody"></div></div></div>
+<script src="app.js"></script>
+</body>
+</html>
