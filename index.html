@@ -8,23 +8,41 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div id="toast" class="toast" role="status"></div>
-<div class="app-shell">
-  <aside class="sidebar">
-    <div class="brand"><span class="brandmark">A</span><div><strong>ANIMO</strong><small>Boekhouding VOF</small></div></div>
-    <nav id="nav"></nav>
-    <div class="side-bottom"><span class="status-dot"></span><span>Demomodus</span><button id="resetBtn" class="link-btn">Reset demo</button></div>
-  </aside>
-  <main>
-    <header class="topbar">
-      <button id="menuBtn" class="icon-btn menu-btn" aria-label="Menu">☰</button>
-      <div><h1 id="pageTitle">Dashboard</h1><p id="pageSub">Overzicht van je onderneming</p></div>
-      <div class="top-actions"><button class="btn secondary" data-action="export">Export</button><button class="btn" data-action="quick">+ Nieuwe boeking</button><div class="avatar">AV</div></div>
-    </header>
-    <section id="content" class="content"></section>
-  </main>
-</div>
-<div id="modal" class="modal-wrap hidden" aria-hidden="true"><div class="modal"><button class="modal-close" data-action="close">×</button><div id="modalBody"></div></div></div>
-<script src="app.js"></script>
+  <div id="toast" class="toast" role="status"></div>
+  <section id="authScreen" class="auth-screen">
+    <div class="auth-card">
+      <div class="brand auth-brand"><span class="brandmark">A</span><div><strong>ANIMO</strong><small>Boekhouding VOF</small></div></div>
+      <h1>Veilig aanmelden</h1>
+      <p>Je boekhouding wordt bewaard in je beveiligde Supabase-database.</p>
+      <form id="authForm">
+        <label>E-mailadres</label><input class="input" type="email" name="email" required autocomplete="email">
+        <label>Wachtwoord</label><input class="input" type="password" name="password" minlength="8" required autocomplete="current-password">
+        <button class="btn wide" name="mode" value="login">Aanmelden</button>
+        <button class="btn secondary wide" name="mode" value="signup">Account aanmaken</button>
+      </form>
+      <p class="small-note">Gebruik minstens 8 tekens. Je publishable key staat in de website, maar de database blijft afgeschermd door login en Row Level Security.</p>
+    </div>
+  </section>
+
+  <div id="app" class="app-shell hidden">
+    <aside class="sidebar">
+      <div class="brand"><span class="brandmark">A</span><div><strong>ANIMO</strong><small>Boekhouding VOF</small></div></div>
+      <nav id="nav"></nav>
+      <div class="side-bottom"><span class="status-dot"></span><span id="businessLabel">Verbonden</span><button id="logoutBtn" class="link-btn">Afmelden</button></div>
+    </aside>
+    <main>
+      <header class="topbar">
+        <button id="menuBtn" class="icon-btn menu-btn" aria-label="Menu">☰</button>
+        <div><h1 id="pageTitle">Dashboard</h1><p id="pageSub">Echte gegevens uit Supabase</p></div>
+        <div class="top-actions"><button class="btn secondary" id="refreshBtn">Vernieuwen</button><button class="btn" data-action="quick">+ Toevoegen</button><div class="avatar">AV</div></div>
+      </header>
+      <section id="content" class="content"><div class="card">Laden…</div></section>
+    </main>
+  </div>
+
+  <div id="modal" class="modal-wrap hidden" aria-hidden="true"><div class="modal"><button class="modal-close" data-action="close">×</button><div id="modalBody"></div></div></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
