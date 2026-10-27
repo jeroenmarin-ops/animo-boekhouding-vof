@@ -1,20 +1,77 @@
 <!doctype html>
 <html lang="nl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#12372a"><title>ANIMO Boekhouding VOF</title>
-<link rel="stylesheet" href="styles.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#153b2e">
+  <title>ANIMO Boekhouding VOF</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div id="toast" class="toast"></div>
-<section id="authScreen" class="center-screen hidden"><form id="authForm" class="auth-card"><h1>ANIMO Boekhouding</h1><p>Log in om je boekhouding te openen.</p><label>E-mail<input name="email" type="email" required></label><label>Wachtwoord<input name="password" type="password" minlength="6" required></label><button class="btn" type="submit">Inloggen</button><button class="btn secondary" type="button" id="signupBtn">Account maken</button></form></section>
-<section id="setupScreen" class="center-screen hidden"><form id="setupForm" class="auth-card"><h1>VOF instellen</h1><label>Officiële naam<input name="name" required></label><label>Ondernemingsnummer<input name="enterprise"></label><label>Btw-nummer<input name="vat"></label><label>Boekjaar<input name="year" type="number" value="2026" required></label><button class="btn">Boekhouding aanmaken</button></form></section>
+
+<section id="authScreen" class="center-screen hidden">
+  <form id="authForm" class="auth-card">
+    <div class="brand auth-brand"><span class="brandmark">A</span><div><b>ANIMO</b><small>Boekhouding VOF</small></div></div>
+    <h1>Aanmelden</h1>
+    <label>E-mailadres<input name="email" type="email" autocomplete="email" required></label>
+    <label>Wachtwoord<input name="password" type="password" autocomplete="current-password" minlength="6" required></label>
+    <button class="btn" type="submit">Aanmelden</button>
+    <button class="btn secondary" id="signupBtn" type="button">Account maken</button>
+  </form>
+</section>
+
+<section id="setupScreen" class="center-screen hidden">
+  <form id="setupForm" class="auth-card">
+    <h1>VOF instellen</h1>
+    <label>Officiële naam<input name="name" required></label>
+    <label>Ondernemingsnummer<input name="enterprise"></label>
+    <label>Btw-nummer<input name="vat"></label>
+    <label>Boekjaar<input name="year" type="number" value="2026" min="2020" max="2100" required></label>
+    <button class="btn" type="submit">Boekhouding aanmaken</button>
+  </form>
+</section>
+
 <div id="app" class="app-shell hidden">
-<aside class="sidebar"><div class="brand"><span>A</span><div><b>ANIMO</b><small>Boekhouding VOF</small></div></div><nav><button data-page="dashboard">▦ Dashboard</button><button data-page="sales">↗ Verkoop</button><button data-page="accounting">▥ Boekhouding</button><button data-page="documents">▧ Documenten</button><button data-page="settings">⚙ Instellingen</button></nav><button id="logoutBtn" class="logout">Afmelden</button></aside>
-<main><header><button id="menuBtn" class="icon">☰</button><h1 id="title">Dashboard</h1><button id="quickUpload" class="plus">+</button><div class="avatar">AV</div></header><section id="content" class="content"></section></main>
+  <div id="overlay" class="overlay"></div>
+  <aside class="sidebar">
+    <div class="brand"><span class="brandmark">A</span><div><b>ANIMO</b><small>Boekhouding VOF</small></div></div>
+    <nav>
+      <button data-page="dashboard">▦ Dashboard</button>
+      <button data-page="sales">↗ Verkoop</button>
+      <button data-page="purchases">↙ Aankopen</button>
+      <button data-page="bank">▤ Bank & kas</button>
+      <button data-page="accounting">▥ Boekhouding</button>
+      <button data-page="vat">% Btw</button>
+      <button data-page="partners">♙ Vennoten</button>
+      <button data-page="peppol">⇄ Peppol extern</button>
+      <button data-page="reports">◫ Rapporten</button>
+      <button data-page="documents">▧ Documenten</button>
+      <button data-page="settings">⚙ Instellingen</button>
+    </nav>
+    <button id="logoutBtn" class="logout">↪ Afmelden</button>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <button id="menuBtn" class="icon-btn">☰</button>
+      <div><h1 id="title">Dashboard</h1><p id="subtitle">Overzicht van je onderneming</p></div>
+      <button id="quickUpload" class="quick">+</button>
+      <div class="avatar">AV</div>
+    </header>
+    <section id="content" class="content"></section>
+  </main>
 </div>
-<div id="modal" class="modal-bg hidden"><div class="modal"><button class="close" data-close>×</button><div id="modalBody"></div></div></div>
+
+<div id="modal" class="modal-wrap hidden">
+  <div class="modal">
+    <button class="modal-close" data-close>×</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="app.js"></script>
-</body></html>
+</body>
+</html>
