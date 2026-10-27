@@ -1,48 +1,17 @@
 <!doctype html>
 <html lang="nl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#12372a">
-  <title>ANIMO Boekhouding VOF</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#12372a"><title>ANIMO Boekhouding VOF</title>
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
-  <div id="toast" class="toast" role="status"></div>
-  <section id="authScreen" class="auth-screen">
-    <div class="auth-card">
-      <div class="brand auth-brand"><span class="brandmark">A</span><div><strong>ANIMO</strong><small>Boekhouding VOF</small></div></div>
-      <h1>Veilig aanmelden</h1>
-      <p>Je boekhouding wordt bewaard in je beveiligde Supabase-database.</p>
-      <form id="authForm">
-        <label>E-mailadres</label><input class="input" type="email" name="email" required autocomplete="email">
-        <label>Wachtwoord</label><input class="input" type="password" name="password" minlength="8" required autocomplete="current-password">
-        <button class="btn wide" name="mode" value="login">Aanmelden</button>
-        <button class="btn secondary wide" name="mode" value="signup">Account aanmaken</button>
-      </form>
-      <p class="small-note">Gebruik minstens 8 tekens. Je publishable key staat in de website, maar de database blijft afgeschermd door login en Row Level Security.</p>
-    </div>
-  </section>
-
-  <div id="app" class="app-shell hidden">
-    <aside class="sidebar">
-      <div class="brand"><span class="brandmark">A</span><div><strong>ANIMO</strong><small>Boekhouding VOF</small></div></div>
-      <nav id="nav"></nav>
-      <div class="side-bottom"><span class="status-dot"></span><span id="businessLabel">Verbonden</span><button id="logoutBtn" class="link-btn">Afmelden</button></div>
-    </aside>
-    <main>
-      <header class="topbar">
-        <button id="menuBtn" class="icon-btn menu-btn" aria-label="Menu">☰</button>
-        <div><h1 id="pageTitle">Dashboard</h1><p id="pageSub">Echte gegevens uit Supabase</p></div>
-        <div class="top-actions"><button class="btn secondary" id="refreshBtn">Vernieuwen</button><button class="btn" data-action="quick">+ Toevoegen</button><div class="avatar">AV</div></div>
-      </header>
-      <section id="content" class="content"><div class="card">Laden…</div></section>
-    </main>
-  </div>
-
-  <div id="modal" class="modal-wrap hidden" aria-hidden="true"><div class="modal"><button class="modal-close" data-action="close">×</button><div id="modalBody"></div></div></div>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="config.js"></script>
-  <script src="app.js"></script>
-</body>
-</html>
+<div id="toast" class="toast"></div>
+<section id="authScreen" class="auth-screen hidden"><form id="authForm" class="auth-card"><div class="logo">A</div><h1>ANIMO Boekhouding</h1><p>Log in om je boekhouding te openen.</p><label>E-mailadres<input type="email" name="email" required></label><label>Wachtwoord<input type="password" name="password" minlength="6" required></label><button class="btn" type="submit">Inloggen</button><button class="btn secondary" id="signupBtn" type="button">Account aanmaken</button></form></section>
+<section id="setupScreen" class="auth-screen hidden"><form id="setupForm" class="auth-card"><div class="logo">A</div><h1>Eerste inrichting</h1><p>Maak je VOF en boekjaar aan.</p><label>Naam VOF<input name="name" required></label><label>Ondernemingsnummer<input name="enterprise"></label><label>Btw-nummer<input name="vat"></label><label>Boekjaar<select name="year"><option>2026</option><option>2027</option></select></label><button class="btn" type="submit">Boekhouding activeren</button></form></section>
+<div id="app" class="app-shell hidden"><aside class="sidebar"><div class="brand"><span>A</span><div><b>ANIMO</b><small>Boekhouding VOF</small></div></div><nav><button data-page="dashboard" class="active">▦ Dashboard</button><button data-page="sales">↗ Verkoop</button><button data-page="accounting">▥ Boekhouding</button><button data-page="documents">▧ Documenten</button><button data-page="settings">⚙ Instellingen</button></nav><button id="logoutBtn" class="logout">Afmelden</button></aside><main><header><button id="menuBtn" class="menu">☰</button><h1 id="title">Dashboard</h1><button id="quickUpload" class="plus">+</button><div class="avatar">AV</div></header><section id="content"></section></main></div>
+<div id="modal" class="overlay hidden"><div class="modal"><button class="close" data-close>×</button><div id="modalBody"></div></div></div>
+<script src="app.js"></script>
+</body></html>
